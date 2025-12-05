@@ -1,9 +1,14 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+@{
+    var pageTitle = ViewData["Title"] as string ?? "AltAtlas";
+    var pageDescription = ViewData["Description"] as string ?? "AltAtlas surfaces curated app alternatives with fit notes, pricing, and product-ready briefs.";
+}
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - AltAtlas</title>
+    <title>@pageTitle</title>
+    <meta name="description" content="@pageDescription" />
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -14,7 +19,10 @@
         <header class="app-header">
             <div class="nav-bar">
                 <div class="nav-top">
-                    <a class="brand" asp-area="" asp-page="/Index">AltAtlas</a>
+                    <a class="brand-with-mark" asp-area="" asp-page="/Index">
+                        <img class="brand-mark" src="~/img/altatlas-logo.svg" alt="AltAtlas logo" />
+                        <span class="brand-text">AltAtlas</span>
+                    </a>
                     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navMenu">
                         <span class="nav-toggle__icon"></span>
                         <span class="sr-only">Toggle navigation</span>

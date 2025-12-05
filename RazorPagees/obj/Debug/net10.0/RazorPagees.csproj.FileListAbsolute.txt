@@ -21,7 +21,6 @@
 /Users/itugui/Projects/razrror/RazorPagees/obj/Debug/net10.0/scopedcss/Pages/Shared/_Layout.cshtml.rz.scp.css
 /Users/itugui/Projects/razrror/RazorPagees/obj/Debug/net10.0/scopedcss/bundle/RazorPagees.styles.css
 /Users/itugui/Projects/razrror/RazorPagees/obj/Debug/net10.0/scopedcss/projectbundle/RazorPagees.bundle.scp.css
-/Users/itugui/Projects/razrror/RazorPagees/obj/Debug/net10.0/compressed/l3ogi90t4w-{0}-655wsmfujh-655wsmfujh.gz
 /Users/itugui/Projects/razrror/RazorPagees/obj/Debug/net10.0/compressed/m8bsbt3gb7-{0}-61n19gt1b8-61n19gt1b8.gz
 /Users/itugui/Projects/razrror/RazorPagees/obj/Debug/net10.0/compressed/3ew2kkhuvp-{0}-8crt418jn0-8crt418jn0.gz
 /Users/itugui/Projects/razrror/RazorPagees/obj/Debug/net10.0/compressed/5dto24u4ii-{0}-bqjiyaj88i-bqjiyaj88i.gz
@@ -95,3 +94,6 @@
 /Users/itugui/Projects/razrror/RazorPagees/obj/Debug/net10.0/RazorPagees.pdb
 /Users/itugui/Projects/razrror/RazorPagees/obj/Debug/net10.0/RazorPagees.genruntimeconfig.cache
 /Users/itugui/Projects/razrror/RazorPagees/obj/Debug/net10.0/ref/RazorPagees.dll
+/Users/itugui/Projects/razrror/RazorPagees/obj/Debug/net10.0/RazorPagees.sourcelink.json
+/Users/itugui/Projects/razrror/RazorPagees/obj/Debug/net10.0/compressed/7lrhkny1mm-{0}-l9js6kne0p-l9js6kne0p.gz
+/Users/itugui/Projects/razrror/RazorPagees/obj/Debug/net10.0/compressed/l3ogi90t4w-{0}-bd6yh7i8on-bd6yh7i8on.gz
