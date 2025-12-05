@@ -1,0 +1,13 @@
+@model RazorPagees.Models.SectionHeadingModel
+
+<section class="section-heading">
+    <div class="section-heading__text">
+        <p class="eyebrow">@Model.Eyebrow</p>
+        <h2>@Model.Title</h2>
+        <p class="muted">@Model.Subtitle</p>
+    </div>
+    @if (!string.IsNullOrWhiteSpace(Model.CtaText))
+    {
+        <a class="ghost-btn" href="@Model.CtaHref">@Model.CtaText</a>
+    }
+</section>

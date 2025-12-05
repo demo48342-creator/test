@@ -1,0 +1,37 @@
+@model RazorPagees.Models.HeroModel
+
+<section class="hero">
+    <div class="hero__text">
+        <p class="eyebrow">@Model.Eyebrow</p>
+        <h1>@Model.Title</h1>
+        <p class="lede">@Model.Lede</p>
+        <div class="hero__actions">
+            <form class="search" method="get">
+                <input name="query" type="search" placeholder="Search by app, problem, or category" />
+                <button type="submit">Start exploring</button>
+            </form>
+            <div class="quick-filters">
+                @foreach (var chip in Model.QuickFilters)
+                {
+                    <span class="chip">@chip</span>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="hero__panel">
+        @foreach (var stat in Model.Stats)
+        {
+            <div class="stat-card">
+                <div class="stat-value">@stat.Value</div>
+                <div class="stat-label">@stat.Label</div>
+                <p class="stat-note">@stat.Note</p>
+            </div>
+        }
+        <div class="pill-board">
+            @foreach (var pill in Model.PillBoard)
+            {
+                <span>@pill</span>
+            }
+        </div>
+    </div>
+</section>

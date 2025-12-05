@@ -1,0 +1,25 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "App Alternatives Navigator";
+}
+
+<partial name="_Hero" model="Model.Hero" />
+
+<partial name="_SectionHeading" model="Model.ProductHeading" />
+
+<section class="options-grid">
+    @foreach (var option in Model.ProductOptions)
+    {
+        <partial name="_ProductOptionCard" model="option" />
+    }
+</section>
+
+<partial name="_SectionHeading" model="Model.CuratedHeading" />
+
+<section class="grid">
+    @foreach (var app in Model.AppListings)
+    {
+        <partial name="_AppCard" model="app" />
+    }
+</section>

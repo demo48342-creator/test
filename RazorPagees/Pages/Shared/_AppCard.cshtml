@@ -1,0 +1,38 @@
+@model RazorPagees.Models.AppListing
+
+<article class="app-card">
+    <div class="app-card__top">
+        <span class="pill">@Model.Category</span>
+        <span class="pill pill--muted">Signal</span>
+    </div>
+    <h3>@Model.Name</h3>
+    <p class="app-summary">@Model.Summary</p>
+    <p class="app-fit">Best for: @Model.Fit</p>
+    <div class="tag-row">
+        @foreach (var tag in Model.Tags)
+        {
+            <span class="tag">@tag</span>
+        }
+    </div>
+
+    <div class="alt-list">
+        @foreach (var alt in Model.Alternatives)
+        {
+            <div class="alt-item">
+                <div>
+                    <div class="alt-name">@alt.Name</div>
+                    <div class="alt-desc">@alt.Differentiator</div>
+                </div>
+                <div class="alt-meta">
+                    <span class="pill pill--price">@alt.Pricing</span>
+                    <a class="alt-link" href="@alt.Link" target="_blank" rel="noreferrer">Open</a>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="card-actions">
+        <button class="text-btn" type="button">Add to watchlist</button>
+        <a class="text-link" href="#">Request a head-to-head</a>
+    </div>
+</article>
