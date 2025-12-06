@@ -1,0 +1,82 @@
+@page "/apps/{slug}"
+@model RazorPagees.Pages.Apps.DetailModel
+@{
+    ViewData["Title"] = Model.App?.Name ?? "App profile";
+    ViewData["Description"] = Model.App?.Summary ?? "App profile with vetted alternatives.";
+}
+
+@if (Model.App is null)
+{
+    <p class="muted">This app could not be found.</p>
+}
+else
+{
+    <section class="app-detail">
+        <div class="app-detail__header">
+            <div class="app-card__brand">
+                <div class="app-logo app-logo--lg">
+                    <img src="@Model.App.LogoUrl" alt="@Model.App.Name logo" loading="lazy" />
+                </div>
+                <div>
+                    <p class="eyebrow">@Model.App.Category</p>
+                    <h1>@Model.App.Name</h1>
+                    <p class="muted">@Model.App.Fit</p>
+                    <div class="pill-row">
+                        <span class="pill pill--muted">@Model.App.Signal</span>
+                        @foreach (var tag in Model.App.Tags)
+                        {
+                            <span class="tag">@tag</span>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="vote-row" aria-label="Voting for @Model.App.Name">
+                <button type="button" class="vote-btn vote-btn--up" data-slug="@Model.App.Slug" data-direction="up">
+                    <span>▲</span><span>@Model.App.Upvotes</span>
+                </button>
+                <button type="button" class="vote-btn vote-btn--down" data-slug="@Model.App.Slug" data-direction="down">
+                    <span>▼</span><span>@Model.App.Downvotes</span>
+                </button>
+                <a class="pill pill--outline" href="@Model.App.Website" target="_blank" rel="noopener">Visit site</a>
+            </div>
+        </div>
+
+        <div class="app-detail__body">
+            <div class="app-metrics">
+                <span class="pill pill--outline"><span class="score-value">@Model.App.Score</span> score</span>
+                <span class="pill pill--muted">@Model.App.Upvotes votes</span>
+                <span class="pill pill--muted">@Model.App.CommentsCount comments</span>
+                <span class="pill pill--muted">@Model.App.LaunchDate.ToString("MMM dd, yyyy") launch</span>
+                @if (Model.App.GoldenKittyEligible)
+                {
+                    <span class="pill pill--outline">Golden Kitty eligible</span>
+                }
+            </div>
+            <div class="app-summary">@Html.Raw(string.IsNullOrWhiteSpace(Model.App.HtmlDescription) ? Model.App.Summary : Model.App.HtmlDescription)</div>
+            @if (!string.IsNullOrWhiteSpace(Model.App.DiscussionLink))
+            {
+                <p class="muted">Join the discussion: <a class="text-link" href="@Model.App.DiscussionLink" target="_blank" rel="noopener">Community thread</a></p>
+            }
+            <div class="alt-list">
+                @foreach (var alt in Model.App.Alternatives)
+                {
+                    <div class="alt-item">
+                        <div class="alt-brand">
+                            <div class="alt-logo">
+                                <img src="@alt.LogoUrl" alt="@alt.Name logo" loading="lazy" />
+                            </div>
+                            <div>
+                                <div class="alt-name">@alt.Name</div>
+                                <div class="alt-desc">@alt.Differentiator</div>
+                            </div>
+                        </div>
+                        <div class="alt-meta">
+                            <span class="pill pill--price">@alt.Pricing</span>
+                            <a class="alt-link" href="@alt.Link" target="_blank" rel="noreferrer">Open</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+}

@@ -1,0 +1,51 @@
+@{
+    var year = DateTime.UtcNow.Year;
+}
+
+<footer class="footer">
+    <div class="footer__panel">
+        <div class="footer__brand-block">
+            <a class="brand-with-mark" asp-area="" asp-page="/Index">
+                <img class="brand-mark" src="~/img/altatlas-logo.svg" alt="AltAtlas logo" />
+                <span class="brand-text">AltAtlas</span>
+            </a>
+            <p class="footer__lede">Decision-ready alternatives, concise briefs, and pricing notes without the hype.</p>
+            <div class="footer__pills">
+                <span class="pill pill--outline">Research, not ads</span>
+                <span class="pill pill--muted">No trackers or dark patterns</span>
+            </div>
+            <div class="footer__actions">
+                <a class="pill pill--solid" href="#">Submit an app</a>
+                <a class="pill pill--outline" href="#">Get updates</a>
+            </div>
+        </div>
+
+        <div class="footer__columns">
+            <div class="footer__col">
+                <p class="footer__label">Explore</p>
+                <a asp-area="" asp-page="/Index">App alternatives</a>
+                <a href="#">Comparison sprints</a>
+            </div>
+            <div class="footer__col">
+                <p class="footer__label">Resources</p>
+                <a asp-area="" asp-page="/Privacy">Privacy</a>
+                <a href="mailto:hello@altatlas.studio">Contact</a>
+            </div>
+            <div class="footer__col footer__signal">
+                <p class="footer__label">Signals newsletter</p>
+                <p class="muted small-text">A short email when we ship new alternatives, briefs, or templates. No spam.</p>
+                <div class="footer__form">
+                    <input type="email" name="email" placeholder="you@company.com" aria-label="Email for updates" />
+                    <button type="button">Notify me</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer__meta-row">
+        <span class="muted">&copy; @year AltAtlas. Built for teams that compare before buying.</span>
+        <div class="footer__meta-links">
+            <a href="#">Status</a>
+            <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </div>
+</footer>

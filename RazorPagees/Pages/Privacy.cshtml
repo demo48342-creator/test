@@ -4,6 +4,108 @@
     ViewData["Title"] = "Privacy Policy";
     ViewData["Description"] = "How AltAtlas handles data, cookies, and user privacy.";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+@{
+    var lastUpdated = "February 2025";
+}
+
+<section class="policy">
+    <div class="policy__intro">
+        <p class="eyebrow">Privacy-first</p>
+        <h1>@ViewData["Title"]</h1>
+        <p class="lede">AltAtlas is built to help teams make confident product choices without sacrificing privacy. We collect only what we need to keep the site reliable and never sell or rent data—period.</p>
+        <div class="policy__meta">
+            <span class="pill pill--outline">No ad trackers</span>
+            <span class="pill pill--outline">Data minimization</span>
+            <span class="pill pill--muted">Last updated @lastUpdated</span>
+        </div>
+    </div>
+
+    <div class="policy__grid">
+        <article class="policy__card">
+            <h2>What we collect</h2>
+            <p class="muted">Only the essentials to keep the site stable and understand aggregate interest.</p>
+            <ul class="policy__list">
+                <li>
+                    <span class="policy__bullet"></span>
+                    <div>Basic request logs (IP, user agent, page, timestamp) retained for short-term security and uptime monitoring.</div>
+                </li>
+                <li>
+                    <span class="policy__bullet"></span>
+                    <div>Anonymous usage patterns in aggregate—what pages are most visited and which components people click—without fingerprinting.</div>
+                </li>
+                <li>
+                    <span class="policy__bullet"></span>
+                    <div>Optional contact info you voluntarily share (like an email to get updates or submit an app).</div>
+                </li>
+            </ul>
+        </article>
+
+        <article class="policy__card">
+            <h2>What we don’t collect</h2>
+            <p class="muted">No surprises, no shadow profiles.</p>
+            <ul class="policy__list">
+                <li>
+                    <span class="policy__bullet"></span>
+                    <div>No third-party ad pixels, fingerprinting scripts, or cross-site tracking.</div>
+                </li>
+                <li>
+                    <span class="policy__bullet"></span>
+                    <div>No selling, renting, or trading of personal data.</div>
+                </li>
+                <li>
+                    <span class="policy__bullet"></span>
+                    <div>No unnecessary cookies. If we add optional analytics later, we’ll keep them privacy-friendly and documented here.</div>
+                </li>
+            </ul>
+        </article>
+
+        <article class="policy__card">
+            <h2>Retention & control</h2>
+            <p class="muted">You stay in control of anything you share.</p>
+            <ul class="policy__list">
+                <li>
+                    <span class="policy__bullet"></span>
+                    <div>Security and diagnostic logs roll off automatically after 30–45 days unless needed for investigating abuse.</div>
+                </li>
+                <li>
+                    <span class="policy__bullet"></span>
+                    <div>Newsletter or launch-list emails can be removed anytime—reply to any message or ask us directly.</div>
+                </li>
+                <li>
+                    <span class="policy__bullet"></span>
+                    <div>For data removal requests, email <a href="mailto:privacy@altatlas.studio">privacy@altatlas.studio</a> with the address you used, and we’ll confirm once it’s cleared.</div>
+                </li>
+            </ul>
+        </article>
+
+        <article class="policy__card">
+            <h2>Infrastructure</h2>
+            <p class="muted">Modern security defaults with a light footprint.</p>
+            <ul class="policy__list">
+                <li>
+                    <span class="policy__bullet"></span>
+                    <div>HTTPS is enforced site-wide; credentials and secrets are stored outside the codebase.</div>
+                </li>
+                <li>
+                    <span class="policy__bullet"></span>
+                    <div>Data is hosted in reputable cloud regions in the US; EU options are planned as we add workspace features.</div>
+                </li>
+                <li>
+                    <span class="policy__bullet"></span>
+                    <div>We periodically review third-party dependencies and remove anything that doesn’t meet our privacy bar.</div>
+                </li>
+            </ul>
+        </article>
+    </div>
+
+    <div class="policy__cta">
+        <div>
+            <h3>Questions or requests?</h3>
+            <p class="muted">Reach out and we’ll respond within two business days. If we materially change this policy, we’ll update the date above and summarize what changed.</p>
+        </div>
+        <div class="policy__cta-actions">
+            <a class="pill pill--solid" href="mailto:privacy@altatlas.studio">Contact privacy</a>
+        </div>
+    </div>
+</section>

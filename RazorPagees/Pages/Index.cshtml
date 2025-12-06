@@ -7,19 +7,19 @@
 
 <partial name="_Hero" model="Model.Hero" />
 
-<partial name="_SectionHeading" model="Model.ProductHeading" />
+<partial name="_SectionHeading" model="Model.TopHeading" />
 
-<section class="options-grid">
-    @foreach (var option in Model.ProductOptions)
+<section class="grid">
+    @foreach (var app in Model.TopApps)
     {
-        <partial name="_ProductOptionCard" model="option" />
+        <partial name="_AppCard" model="app" />
     }
 </section>
 
-<partial name="_SectionHeading" model="Model.CuratedHeading" />
+<partial name="_SectionHeading" model="Model.NewHeading" />
 
-<section class="grid">
-    @foreach (var app in Model.AppListings)
+<section class="grid" id="launches">
+    @foreach (var app in Model.NewLaunches)
     {
         <partial name="_AppCard" model="app" />
     }

@@ -19,14 +19,25 @@
         </div>
     </div>
     <div class="hero__panel">
-        @foreach (var stat in Model.Stats)
-        {
-            <div class="stat-card">
-                <div class="stat-value">@stat.Value</div>
-                <div class="stat-label">@stat.Label</div>
-                <p class="stat-note">@stat.Note</p>
-            </div>
-        }
+        <div class="panel-header">
+            <p class="eyebrow">Hot apps</p>
+            <h3>Racing up today</h3>
+            <a class="text-link" href="#launches">See launches</a>
+        </div>
+        <div class="hot-list">
+            @for (var i = 0; i < Model.HotApps.Count; i++)
+            {
+                var rank = i + 1;
+                <div class="hot-card">
+                    <div class="hot-rank @(rank == 1 ? "hot-rank--gold" : rank == 2 ? "hot-rank--silver" : "hot-rank--bronze")">@rank</div>
+                    <div class="hot-card__body">
+                        <div class="hot-card__title">@Model.HotApps[i]</div>
+                        <p class="muted">Trending launch · Vote to push it higher</p>
+                    </div>
+                    <span class="hot-spark">▲</span>
+                </div>
+            }
+        </div>
         <div class="pill-board">
             @foreach (var pill in Model.PillBoard)
             {
@@ -35,3 +46,14 @@
         </div>
     </div>
 </section>
+
+<div class="hero-stats">
+    @foreach (var stat in Model.Stats)
+    {
+        <div class="stat-card">
+            <div class="stat-value">@stat.Value</div>
+            <div class="stat-label">@stat.Label</div>
+            <p class="stat-note">@stat.Note</p>
+        </div>
+    }
+</div>

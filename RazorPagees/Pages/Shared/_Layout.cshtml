@@ -31,8 +31,6 @@
                 <div class="nav-menu" id="navMenu">
                     <div class="nav-links">
                         <a asp-area="" asp-page="/Index">Explore</a>
-                        <a asp-area="" asp-page="/Index">Roadmap</a>
-                        <a asp-area="" asp-page="/Privacy">Privacy</a>
                     </div>
                     <div class="nav-actions">
                         <a class="nav-link" href="#">Submit an app</a>
@@ -46,20 +44,7 @@
             @RenderBody()
         </main>
 
-        <footer class="footer">
-            <div class="footer__meta">
-                <div>
-                    <div class="brand">AltAtlas</div>
-                    <p class="muted">A fast path to app alternatives without the hype.</p>
-                </div>
-                <div class="footer__links">
-                    <a asp-area="" asp-page="/Index">Explore</a>
-                    <a href="#">Roadmap</a>
-                    <a asp-area="" asp-page="/Privacy">Privacy</a>
-                </div>
-            </div>
-            <div class="footer__note">&copy; 2025 AltAtlas. Crafted for thoughtful teams.</div>
-        </footer>
+        <partial name="_Footer" />
     </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

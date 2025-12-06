@@ -1,38 +1,81 @@
 @model RazorPagees.Models.AppListing
 
-<article class="app-card">
+<article class="app-card @(Model.IsNewLaunch ? "app-card--launch" : "app-card--classic")">
     <div class="app-card__top">
-        <span class="pill">@Model.Category</span>
-        <span class="pill pill--muted">Signal</span>
-    </div>
-    <h3>@Model.Name</h3>
-    <p class="app-summary">@Model.Summary</p>
-    <p class="app-fit">Best for: @Model.Fit</p>
-    <div class="tag-row">
-        @foreach (var tag in Model.Tags)
-        {
-            <span class="tag">@tag</span>
-        }
-    </div>
-
-    <div class="alt-list">
-        @foreach (var alt in Model.Alternatives)
-        {
-            <div class="alt-item">
-                <div>
-                    <div class="alt-name">@alt.Name</div>
-                    <div class="alt-desc">@alt.Differentiator</div>
-                </div>
-                <div class="alt-meta">
-                    <span class="pill pill--price">@alt.Pricing</span>
-                    <a class="alt-link" href="@alt.Link" target="_blank" rel="noreferrer">Open</a>
-                </div>
+        <div class="app-card__brand">
+            <div class="app-logo">
+                <img src="@Model.LogoUrl" alt="@Model.Name logo" loading="lazy" />
             </div>
-        }
+            <div>
+                <div class="app-title-row">
+                    <a class="app-title" href="/apps/@Model.Slug">@Model.Name</a>
+                    <span class="pill">@Model.Category</span>
+                </div>
+                @if (!Model.IsNewLaunch)
+                {
+                    <p class="app-fit">Best for: @Model.Fit</p>
+                }
+            </div>
+        </div>
+        <span class="pill pill--muted">@(!string.IsNullOrWhiteSpace(Model.Signal) ? Model.Signal : "Signal")</span>
     </div>
 
-    <div class="card-actions">
-        <button class="text-btn" type="button">Add to watchlist</button>
-        <a class="text-link" href="#">Request a head-to-head</a>
-    </div>
+    @if (Model.IsNewLaunch)
+    {
+        <div class="app-meta">
+            <span class="pill pill--outline">Launch @Model.LaunchDate.ToString("MMM dd")</span>
+            <span class="pill pill--muted">@Model.Upvotes votes</span>
+            <span class="pill pill--muted">Score @Model.Score</span>
+        </div>
+        <div class="vote-row vote-row--inline" aria-label="Voting for @Model.Name">
+            <button type="button" class="vote-btn vote-btn--up" data-slug="@Model.Slug" data-direction="up" aria-label="Upvote @Model.Name">
+                <span>▲</span>
+                <span>@Model.Upvotes</span>
+            </button>
+            <button type="button" class="vote-btn vote-btn--down" data-slug="@Model.Slug" data-direction="down" aria-label="Downvote @Model.Name">
+                <span>▼</span>
+                <span>@Model.Downvotes</span>
+            </button>
+        </div>
+        <div class="card-actions">
+            <a class="pill pill--outline" href="@Model.Website" target="_blank" rel="noopener">Visit</a>
+            <a class="text-link" href="/apps/@Model.Slug">View launch</a>
+        </div>
+    }
+    else
+    {
+        <div class="app-summary">@Html.Raw(string.IsNullOrWhiteSpace(Model.HtmlDescription) ? Model.Summary : Model.HtmlDescription)</div>
+
+        <div class="app-meta">
+            <span class="pill pill--outline"><span class="score-value">@Model.Score</span> score</span>
+            <span class="pill pill--muted">@Model.Upvotes votes</span>
+            <span class="pill pill--muted">@Model.CommentsCount comments</span>
+        </div>
+
+        <div class="alt-list">
+            @foreach (var alt in Model.Alternatives)
+            {
+                <div class="alt-item">
+                    <div class="alt-brand">
+                        <div class="alt-logo">
+                            <img src="@alt.LogoUrl" alt="@alt.Name logo" loading="lazy" />
+                        </div>
+                        <div>
+                            <div class="alt-name">@alt.Name</div>
+                            <div class="alt-desc">@alt.Differentiator</div>
+                        </div>
+                    </div>
+                    <div class="alt-meta">
+                        <span class="pill pill--price">@alt.Pricing</span>
+                        <a class="alt-link" href="@alt.Link" target="_blank" rel="noreferrer">Open</a>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="card-actions">
+            <a class="pill pill--outline" href="@Model.Website" target="_blank" rel="noopener">Visit</a>
+            <a class="text-link" href="/apps/@Model.Slug">View profile</a>
+        </div>
+    }
 </article>
