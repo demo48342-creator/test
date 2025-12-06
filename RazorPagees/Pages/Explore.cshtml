@@ -8,23 +8,23 @@
 <section class="section-heading">
     <div class="section-heading__text">
         <p class="eyebrow">Explore</p>
-        <h2>Discover by category</h2>
-        <p class="muted">Browse launches, alternatives, and new drops by the categories the community cares about.</p>
+        <h2>Browse by category</h2>
+        <p class="muted">Jump into the categories the community cares about. Counts reflect live launches.</p>
     </div>
 </section>
 
-<div class="category-chips">
+<nav class="category-chips" aria-label="Categories">
     @foreach (var category in Model.Categories)
     {
         <a class="chip chip--link" href="/Explore/@category.Anchor">@category.Name (@category.Count)</a>
     }
-</div>
+</nav>
 
 <section class="section-heading">
     <div class="section-heading__text">
         <p class="eyebrow">All launches</p>
-        <h2>Browse everything</h2>
-        <p class="muted">Paginated view of all launches and alternatives.</p>
+        <h2>Full catalogue</h2>
+        <p class="muted">Paginated view of every launch and its alternatives.</p>
     </div>
 </section>
 <div class="grid">

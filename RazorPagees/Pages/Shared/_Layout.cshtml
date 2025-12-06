@@ -15,9 +15,10 @@
     <link rel="stylesheet" href="~/RazorPagees.styles.css" asp-append-version="true" />
 </head>
 <body class="app-body">
+    <a class="skip-link" href="#mainContent">Skip to main content</a>
     <div class="page-shell">
         <header class="app-header">
-            <div class="nav-bar">
+            <div class="nav-bar" role="navigation" aria-label="Primary">
                 <div class="nav-top">
                     <a class="brand-with-mark" asp-area="" asp-page="/Index">
                         <img class="brand-mark" src="~/img/altatlas-logo.svg" alt="AltAtlas logo" />
@@ -30,17 +31,20 @@
                 </div>
                 <div class="nav-menu" id="navMenu">
                     <div class="nav-links">
+                        <a asp-area="" asp-page="/Index">Home</a>
                         <a asp-area="" asp-page="/Explore">Explore</a>
+                        <a href="#launches">Launches</a>
+                        <a asp-area="" asp-page="/Privacy">Privacy</a>
                     </div>
                     <div class="nav-actions">
-                        <a class="nav-link" href="#">Submit an app</a>
-                        <a class="pill pill--outline" href="#">Get updates</a>
+                        <a class="nav-link" href="mailto:hello@altatlas.studio?subject=Submit%20a%20launch">Submit a launch</a>
+                        <a class="pill pill--outline" href="#newsletter">Get updates</a>
                     </div>
                 </div>
             </div>
         </header>
 
-        <main role="main" class="main-content">
+        <main role="main" id="mainContent" class="main-content">
             @RenderBody()
         </main>
 

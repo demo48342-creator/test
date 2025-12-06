@@ -1,17 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600&display=swap');
 
 :root {
-  --bg: #060910;
-  --surface: #0d121d;
-  --card: #12192a;
-  --muted: #a5afc5;
-  --text: #e8eefb;
-  --accent: #7ef2c6;
-  --accent-2: #8ab4ff;
-  --border: #1d2334;
-  --pill: rgba(255, 255, 255, 0.06);
-  --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-  --radius: 16px;
+  --bg: #0a0f1a;
+  --surface: #0f1623;
+  --card: #111c2d;
+  --muted: #c1c8d8;
+  --text: #f4f7fb;
+  --accent: #8be0b8;
+  --accent-2: #8be0b8;
+  --border: #1b2436;
+  --pill: rgba(255, 255, 255, 0.05);
+  --shadow: 0 16px 48px rgba(0, 0, 0, 0.38);
+  --radius: 14px;
+  --focus: #e1f0ff;
 }
 
 * {
@@ -24,15 +25,31 @@ html, body {
 }
 
 body.app-body {
-  background: radial-gradient(circle at 20% 20%, rgba(126, 242, 198, 0.08), transparent 25%), radial-gradient(circle at 80% 0%, rgba(138, 180, 255, 0.1), transparent 22%), var(--bg);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.02), transparent 26%), var(--bg);
   color: var(--text);
   font-family: 'Space Grotesk', 'Manrope', system-ui, -apple-system, sans-serif;
   min-height: 100vh;
+  line-height: 1.6;
+  color-scheme: dark;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 2px;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+button {
+  font-family: inherit;
+  color: inherit;
 }
 
 .page-shell {
@@ -46,7 +63,7 @@ a {
 }
 
 .nav-bar {
-  background: linear-gradient(120deg, rgba(126, 242, 198, 0.1), rgba(138, 180, 255, 0.08));
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -111,15 +128,16 @@ a {
   padding: 8px 12px;
   border-radius: 999px;
   border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.02);
-  color: var(--muted);
+  background: var(--pill);
+  color: var(--text);
   white-space: nowrap;
+  transition: border-color 0.15s ease, background 0.15s ease;
 }
 
 .nav-links a:hover {
   color: var(--text);
-  border-color: rgba(126, 242, 198, 0.4);
-  background: rgba(126, 242, 198, 0.08);
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .nav-actions {
@@ -188,23 +206,43 @@ a {
   border: 0;
 }
 
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  padding: 10px 14px;
+  background: var(--accent);
+  color: #04121a;
+  border-radius: 10px;
+  font-weight: 700;
+  z-index: 999;
+}
+
+.skip-link:focus-visible {
+  left: 16px;
+  top: 16px;
+  outline: none;
+}
+
 .pill {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   padding: 6px 12px;
   border-radius: 999px;
-  background: linear-gradient(135deg, rgba(126, 242, 198, 0.12), rgba(138, 180, 255, 0.08));
+  background: var(--pill);
   color: var(--text);
-  border: 1px solid rgba(126, 242, 198, 0.3);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
   font-size: 13px;
+  font-weight: 600;
+  transition: border-color 0.15s ease, background 0.15s ease;
 }
 
 .pill--outline {
-  border: 1px solid rgba(126, 242, 198, 0.5);
+  border: 1px solid var(--accent);
   color: var(--text);
-  background: rgba(126, 242, 198, 0.08);
+  background: transparent;
 }
 
 .pill--muted {
@@ -214,9 +252,9 @@ a {
 }
 
 .pill--price {
-  border-color: rgba(138, 180, 255, 0.5);
-  color: #dfe8ff;
-  background: rgba(138, 180, 255, 0.12);
+  border-color: var(--accent);
+  color: var(--text);
+  background: rgba(139, 224, 184, 0.08);
   white-space: normal;
   text-align: center;
   line-height: 1.2;
@@ -226,9 +264,9 @@ a {
 }
 
 .pill--signal {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.1);
-  color: var(--accent);
+  background: rgba(139, 224, 184, 0.12);
+  border-color: rgba(139, 224, 184, 0.5);
+  color: var(--text);
   font-weight: 700;
   letter-spacing: 0.01em;
 }
@@ -239,10 +277,17 @@ a {
   color: var(--text);
 }
 
+.pill--solid {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #04121a;
+  font-weight: 800;
+}
+
 .pill--trust {
-  background: linear-gradient(120deg, #4caf50, #7ef2c6);
-  border-color: rgba(126, 242, 198, 0.7);
-  color: #041125;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #04121a;
   font-weight: 800;
 }
 
@@ -254,9 +299,9 @@ a {
 }
 
 .hero__text {
-  background: linear-gradient(135deg, rgba(126, 242, 198, 0.08), rgba(138, 180, 255, 0.1));
+  background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: calc(var(--radius) + 4px);
+  border-radius: calc(var(--radius) + 2px);
   padding: 28px;
   box-shadow: var(--shadow);
 }
@@ -320,9 +365,9 @@ h3 {
 }
 
 .search button {
-  background: linear-gradient(120deg, #7ef2c6, #8ab4ff);
+  background: var(--accent);
   border: none;
-  color: #051026;
+  color: #04121a;
   font-weight: 700;
   padding: 10px 14px;
   border-radius: 10px;
@@ -346,7 +391,7 @@ body.is-locked {
 .search-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(6, 9, 16, 0.78);
+  background: rgba(10, 15, 26, 0.82);
   backdrop-filter: blur(14px);
   display: flex;
   align-items: flex-start;
@@ -365,7 +410,7 @@ body.is-locked {
 
 .search-dialog {
   width: min(1100px, 100%);
-  background: #0f1625;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 18px;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
@@ -391,7 +436,7 @@ body.is-locked {
 
 .search-dialog__input {
   flex: 1;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--card);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 10px 12px;
@@ -609,20 +654,28 @@ body.is-locked {
 
 .chip {
   padding: 7px 12px;
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--pill);
   border: 1px solid var(--border);
   border-radius: 12px;
-  color: var(--muted);
+  color: var(--text);
   font-size: 13px;
+  cursor: default;
 }
 
 .chip--link {
   color: var(--text);
+  cursor: pointer;
 }
 
 .chip--link:hover {
-  border-color: rgba(126, 242, 198, 0.5);
+  border-color: var(--accent);
   color: var(--accent);
+}
+
+.chip--action {
+  background: rgba(139, 224, 184, 0.08);
+  border-color: rgba(139, 224, 184, 0.4);
+  cursor: pointer;
 }
 
 .category-tags {

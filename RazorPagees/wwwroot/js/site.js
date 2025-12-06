@@ -135,7 +135,8 @@ document.addEventListener('DOMContentLoaded', () =>
             const handleOpen = (evt) =>
             {
                 evt.preventDefault();
-                const value = (el instanceof HTMLInputElement) ? el.value : '';
+                const preset = el.getAttribute('data-search-term') || '';
+                const value = preset || (el instanceof HTMLInputElement ? el.value : '');
                 openSearch(value);
             };
 

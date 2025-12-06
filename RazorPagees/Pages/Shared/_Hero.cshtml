@@ -10,22 +10,24 @@
         <h1>@Model.Title</h1>
         <p class="lede">@Model.Lede</p>
         <div class="hero__actions">
-            <form class="search" method="get" data-search-form>
-                <input name="query" type="search" placeholder="Search by app, problem, or category" autocomplete="off" data-open-search />
-                <button type="submit" data-open-search>Start exploring</button>
+            <form class="search" method="get" data-search-form aria-labelledby="searchLabel">
+                <label class="sr-only" id="searchLabel" for="heroSearch">Search app alternatives</label>
+                <input id="heroSearch" name="query" type="search" placeholder="Search by app, problem, or category" autocomplete="off" aria-describedby="searchHint" data-open-search />
+                <button type="submit" data-open-search>Open search</button>
             </form>
-            <div class="quick-filters">
+            <p class="muted small-text" id="searchHint">Enter a term and press enter to browse the full-screen search, or use a shortcut below.</p>
+            <div class="quick-filters" role="list" aria-label="Search shortcuts">
                 @foreach (var chip in Model.QuickFilters)
                 {
-                    <span class="chip">@chip</span>
+                    <button type="button" class="chip chip--action" data-open-search data-search-term="@chip">@chip</button>
                 }
             </div>
-            <div class="category-tags">
+            <nav class="category-tags" aria-label="Popular categories">
                 @foreach (var cat in Model.CategoryTags)
                 {
                     <a class="chip chip--link" href="/Explore#@(cat.Replace(" ", "-").ToLower())">@cat</a>
                 }
-            </div>
+            </nav>
         </div>
     </div>
     <div class="hero__panel">
@@ -38,20 +40,21 @@
             @for (var i = 0; i < Model.HotApps.Count; i++)
             {
                 var rank = i + 1;
-                <div class="hot-card">
-                    <div class="hot-rank @(rank == 1 ? "hot-rank--gold" : rank == 2 ? "hot-rank--silver" : "hot-rank--bronze")">@rank</div>
+                var app = Model.HotApps[i];
+                <a class="hot-card" href="/apps/@app.Slug">
+                    <div class="hot-rank @(rank == 1 ? "hot-rank--gold" : rank == 2 ? "hot-rank--silver" : "hot-rank--bronze")" aria-label="Rank @rank">@rank</div>
                     <div class="hot-card__body">
-                        <div class="hot-card__title">@Model.HotApps[i]</div>
-                        <p class="muted">Trending launch · Vote to push it higher</p>
+                        <div class="hot-card__title">@app.Name</div>
+                        <p class="muted">@app.Category · @app.Upvotes votes</p>
                     </div>
-                    <span class="hot-spark">▲</span>
-                </div>
+                    <span class="hot-spark" aria-hidden="true">▲</span>
+                </a>
             }
         </div>
-        <div class="pill-board">
+        <div class="pill-board" role="list" aria-label="How we review">
             @foreach (var pill in Model.PillBoard)
             {
-                <span>@pill</span>
+                <span role="listitem">@pill</span>
             }
         </div>
     </div>

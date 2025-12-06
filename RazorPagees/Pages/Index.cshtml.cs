@@ -43,13 +43,10 @@ public class IndexModel : PageModel
             .ThenBy(a => a.Name)
             .ToList();
 
-        var hotApps = NewLaunches.Take(3)
-            .Select(a => $"{a.Name} — {a.Upvotes} votes")
-            .ToList();
+        var hotApps = NewLaunches.Take(3).ToList();
 
         var categories = allApps
             .Select(a => a.Category)
-            .Concat(new[] { "AI", "Services", "Productivity" })
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .OrderBy(c => c)
             .ToList();
@@ -72,6 +69,12 @@ public class IndexModel : PageModel
             .ToList();
 
         static string Anchorize(string text) => text.Replace(" ", "-").ToLowerInvariant();
+
+        var quickFilters = categories.Take(4).ToList();
+        if (!quickFilters.Any())
+        {
+            quickFilters = new List<string> { "Productivity", "AI", "Design", "Security" };
+        }
 
         var categorySets = new List<SearchCategory>();
         for (var i = 0; i < bucketNames.Length; i++)
@@ -97,12 +100,12 @@ public class IndexModel : PageModel
 
         Hero = new HeroModel
         {
-            Eyebrow = "Community launchboard",
-            Title = "Discover, vote, and discuss the best new products in tech.",
-            Lede = "Submit or hunt products you love. Daily launches compete for the top of the leaderboard, Product of the Day, and Golden Kitty glory.",
-            QuickFilters = new List<string> { "New today", "Trending", "Maker launch", "Golden Kitty hopefuls" },
-            PillBoard = new List<string> { "Dev tools", "AI & ML", "Productivity", "Design", "Community picks" },
-            CategoryTags = categories,
+            Eyebrow = "Accessible app atlas",
+            Title = "Find better tools without the noise.",
+            Lede = "Human-reviewed launches, pricing notes, and accessibility-first alternatives in one place.",
+            QuickFilters = quickFilters,
+            PillBoard = new List<string> { "Human reviewed", "Clear pricing", "Privacy-respectful" },
+            CategoryTags = categories.Take(12).ToList(),
             HotApps = hotApps,
             SearchPalette = new SearchPalette
             {
@@ -121,19 +124,19 @@ public class IndexModel : PageModel
         TopHeading = new SectionHeadingModel
         {
             Eyebrow = "Leaderboards",
-            Title = "Top products competing for Product of the Day.",
-            Subtitle = "Ranked by score: votes, engagement, and freshness. Golden Kitty eligible.",
-            CtaText = "Submit a launch",
-            CtaHref = "#"
+            Title = "Top scoring products",
+            Subtitle = "Ranked by community votes, engagement, and freshness.",
+            CtaText = "Browse all launches",
+            CtaHref = "/Explore"
         };
 
         NewHeading = new SectionHeadingModel
         {
             Eyebrow = "Fresh launches",
-            Title = "Today’s contenders.",
-            Subtitle = "Vote, discuss, and help decide Product of the Day.",
-            CtaText = "Hunt a product",
-            CtaHref = "#"
+            Title = "Today’s contenders",
+            Subtitle = "Vote, discuss, and follow along with new drops.",
+            CtaText = "See full launch board",
+            CtaHref = "/Explore#launches"
         };
     }
 }
