@@ -25,4 +25,19 @@ else
             <partial name="_AppCard" model="app" />
         }
     </div>
+
+    @if (Model.TotalPages > 1)
+    {
+        <div class="pagination">
+            @if (Model.PageNumber > 1)
+            {
+                <a class="pill pill--outline" href="/Explore/@Model.CategorySlug?page=@(Model.PageNumber - 1)">Previous</a>
+            }
+            <span class="pill pill--muted">Page @Model.PageNumber of @Model.TotalPages</span>
+            @if (Model.PageNumber < Model.TotalPages)
+            {
+                <a class="pill pill--outline" href="/Explore/@Model.CategorySlug?page=@(Model.PageNumber + 1)">Next</a>
+            }
+        </div>
+    }
 }

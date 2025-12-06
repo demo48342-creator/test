@@ -352,6 +352,13 @@ h3 {
   gap: 12px;
 }
 
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+
 .hero__panel {
   background: var(--card);
   border-radius: calc(var(--radius) + 4px);

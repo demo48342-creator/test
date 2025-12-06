@@ -82,7 +82,8 @@ public class AppCatalogService
         {
             new AppListing
             {
-                Slug = "adobe-photoshop",
+                Id = 101,
+                Slug = "appid-101",
                 Name = "Adobe Photoshop",
                 Category = "Creative Suite",
                 Summary = "Pixel-perfect editing powerhouse for teams that need retouching, automation, and deep integration.",
@@ -128,7 +129,8 @@ public class AppCatalogService
             },
             new AppListing
             {
-                Slug = "slack",
+                Id = 102,
+                Slug = "appid-102",
                 Name = "Slack",
                 Category = "Team Communication",
                 Summary = "Channel-based messaging with searchable history and a vast integration ecosystem.",
@@ -174,7 +176,8 @@ public class AppCatalogService
             },
             new AppListing
             {
-                Slug = "notion",
+                Id = 103,
+                Slug = "appid-103",
                 Name = "Notion",
                 Category = "Docs & Workspaces",
                 Summary = "All-in-one docs, databases, and wiki with collaborative blocks and templates.",
@@ -220,7 +223,8 @@ public class AppCatalogService
             },
             new AppListing
             {
-                Slug = "figma",
+                Id = 104,
+                Slug = "appid-104",
                 Name = "Figma",
                 Category = "Product Design",
                 Summary = "Browser-based UI design with real-time collaboration and component systems.",
@@ -264,13 +268,62 @@ public class AppCatalogService
                     }
                 }
             }
+        ,
+            new AppListing
+            {
+                Id = 105,
+                Slug = "appid-105",
+                Name = "Zapier",
+                Category = "Automation",
+                Summary = "Connect apps and automate workflows with triggers and actions.",
+                Fit = "Teams stitching together SaaS without heavy engineering.",
+                Tags = new List<string> { "Automation", "No-code", "Integrations" },
+                Signal = "Top pick",
+                LogoUrl = "https://logo.clearbit.com/zapier.com",
+                Website = "https://zapier.com",
+                HtmlDescription = "<p>Thousands of integrations and multi-step workflows to automate notifications, ops, and reporting.</p>",
+                Upvotes = 1320,
+                Downvotes = 62,
+                CommentsCount = 180,
+                LaunchDate = DateTime.UtcNow.AddDays(-30),
+                GoldenKittyEligible = true,
+                DiscussionLink = "#",
+                Alternatives = new List<AlternativeOption>
+                {
+                    new AlternativeOption
+                    {
+                        Name = "Make",
+                        Differentiator = "Visual scenarios with granular control and scheduling.",
+                        Pricing = "Free + paid plans",
+                        Link = "https://www.make.com",
+                        LogoUrl = "https://logo.clearbit.com/make.com"
+                    },
+                    new AlternativeOption
+                    {
+                        Name = "IFTTT",
+                        Differentiator = "Simple automations for consumer and IoT flows.",
+                        Pricing = "Free + Pro",
+                        Link = "https://ifttt.com",
+                        LogoUrl = "https://logo.clearbit.com/ifttt.com"
+                    },
+                    new AlternativeOption
+                    {
+                        Name = "n8n",
+                        Differentiator = "Open-source workflows you can self-host with code-level control.",
+                        Pricing = "Open-source + cloud",
+                        Link = "https://n8n.io",
+                        LogoUrl = "https://logo.clearbit.com/n8n.io"
+                    }
+                }
+            }
         };
 
         var launches = new List<AppListing>
         {
             new AppListing
             {
-                Slug = "arc-browser",
+                Id = 201,
+                Slug = "appid-201",
                 Name = "Arc",
                 Category = "Browser",
                 Summary = "A rethink of the browser with spaces, tidy tabs, and built-in easels for quick mocks.",
@@ -317,7 +370,8 @@ public class AppCatalogService
             },
             new AppListing
             {
-                Slug = "perplexity-ai",
+                Id = 202,
+                Slug = "appid-202",
                 Name = "Perplexity",
                 Category = "AI & ML",
                 Summary = "Fast AI answers with live search grounding and citations.",
@@ -364,7 +418,8 @@ public class AppCatalogService
             },
             new AppListing
             {
-                Slug = "linear",
+                Id = 203,
+                Slug = "appid-203",
                 Name = "Linear",
                 Category = "Issue Tracking",
                 Summary = "Blazing-fast issue tracking with opinionated workflows and keyboard-first commands.",
