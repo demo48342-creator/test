@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -40,6 +41,13 @@ public class IndexModel : PageModel
             .Select(a => $"{a.Name} — {a.Upvotes} votes")
             .ToList();
 
+        var categories = AllApps
+            .Select(a => a.Category)
+            .Concat(new[] { "AI", "Services", "Productivity" })
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .OrderBy(c => c)
+            .ToList();
+
         Hero = new HeroModel
         {
             Eyebrow = "Community launchboard",
@@ -47,6 +55,7 @@ public class IndexModel : PageModel
             Lede = "Submit or hunt products you love. Daily launches compete for the top of the leaderboard, Product of the Day, and Golden Kitty glory.",
             QuickFilters = new List<string> { "New today", "Trending", "Maker launch", "Golden Kitty hopefuls" },
             PillBoard = new List<string> { "Dev tools", "AI & ML", "Productivity", "Design", "Community picks" },
+            CategoryTags = categories,
             HotApps = hotApps,
             Stats = new List<StatBlock>
             {

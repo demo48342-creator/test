@@ -17,6 +17,8 @@ public class HeroModel
     public List<StatBlock> Stats { get; set; } = new();
 
     public List<string> HotApps { get; set; } = new();
+
+    public List<string> CategoryTags { get; set; } = new();
 }
 
 public class StatBlock

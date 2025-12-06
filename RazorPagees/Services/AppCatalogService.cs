@@ -24,6 +24,16 @@ public class AppCatalogService
     public AppListing? GetBySlug(string slug) =>
         _topApps.Concat(_newLaunches).FirstOrDefault(a => a.Slug.Equals(slug, System.StringComparison.OrdinalIgnoreCase));
 
+    public List<AppListing> GetByCategorySlug(string categorySlug)
+    {
+        var anchor = Slugify(categorySlug);
+        return _topApps.Concat(_newLaunches)
+            .Where(a => Slugify(a.Category).Equals(anchor, System.StringComparison.OrdinalIgnoreCase))
+            .ToList();
+    }
+
+    private static string Slugify(string text) => text.Replace(" ", "-").ToLowerInvariant();
+
     public (int Up, int Down, int Score)? Vote(string slug, string direction)
     {
         lock (_lock)
@@ -302,6 +312,53 @@ public class AppCatalogService
                         Pricing = "Free",
                         Link = "https://brave.com",
                         LogoUrl = "https://logo.clearbit.com/brave.com"
+                    }
+                }
+            },
+            new AppListing
+            {
+                Slug = "perplexity-ai",
+                Name = "Perplexity",
+                Category = "AI & ML",
+                Summary = "Fast AI answers with live search grounding and citations.",
+                Fit = "Teams that need quick research with source links.",
+                Tags = new List<string> { "AI", "Search", "Productivity" },
+                Signal = "New launch",
+                LogoUrl = "https://logo.clearbit.com/perplexity.ai",
+                Website = "https://www.perplexity.ai",
+                HtmlDescription = "<p>Live, cited answers powered by multiple models. Great for drafting, research, and quick summaries.</p>",
+                IsNewLaunch = true,
+                Upvotes = 860,
+                Downvotes = 22,
+                CommentsCount = 180,
+                LaunchDate = DateTime.UtcNow.AddDays(-1),
+                GoldenKittyEligible = true,
+                DiscussionLink = "#",
+                Alternatives = new List<AlternativeOption>
+                {
+                    new AlternativeOption
+                    {
+                        Name = "ChatGPT",
+                        Differentiator = "Conversational AI with GPT-4 options and plugins.",
+                        Pricing = "Free + Plus",
+                        Link = "https://chat.openai.com",
+                        LogoUrl = "https://logo.clearbit.com/openai.com"
+                    },
+                    new AlternativeOption
+                    {
+                        Name = "Claude",
+                        Differentiator = "Long-context assistant great for documents and analysis.",
+                        Pricing = "Free + Pro",
+                        Link = "https://claude.ai",
+                        LogoUrl = "https://logo.clearbit.com/anthropic.com"
+                    },
+                    new AlternativeOption
+                    {
+                        Name = "You.com",
+                        Differentiator = "AI search assistant with plugins and multi-modal answers.",
+                        Pricing = "Free + Pro",
+                        Link = "https://you.com",
+                        LogoUrl = "https://logo.clearbit.com/you.com"
                     }
                 }
             },

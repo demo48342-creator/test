@@ -324,6 +324,34 @@ h3 {
   font-size: 13px;
 }
 
+.chip--link {
+  color: var(--text);
+}
+
+.chip--link:hover {
+  border-color: rgba(126, 242, 198, 0.5);
+  color: var(--accent);
+}
+
+.category-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.category-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 8px 0 16px;
+}
+
+.category-section {
+  margin-top: 24px;
+  display: grid;
+  gap: 12px;
+}
+
 .hero__panel {
   background: var(--card);
   border-radius: calc(var(--radius) + 4px);

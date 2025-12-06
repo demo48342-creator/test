@@ -16,6 +16,12 @@
                     <span class="chip">@chip</span>
                 }
             </div>
+            <div class="category-tags">
+                @foreach (var cat in Model.CategoryTags)
+                {
+                    <a class="chip chip--link" href="/Explore#@(cat.Replace(" ", "-").ToLower())">@cat</a>
+                }
+            </div>
         </div>
     </div>
     <div class="hero__panel">

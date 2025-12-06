@@ -1,0 +1,40 @@
+@page
+@model RazorPagees.Pages.ExploreModel
+@{
+    ViewData["Title"] = "Explore categories";
+    ViewData["Description"] = "Discover launches by category, compare alternatives, and find new apps.";
+}
+
+<section class="section-heading">
+    <div class="section-heading__text">
+        <p class="eyebrow">Explore</p>
+        <h2>Discover by category</h2>
+        <p class="muted">Browse launches, alternatives, and new drops by the categories the community cares about.</p>
+    </div>
+</section>
+
+<div class="category-chips">
+    @foreach (var category in Model.Categories)
+    {
+        <a class="chip chip--link" href="/Explore/@category.Anchor">@category.Name (@category.Count)</a>
+    }
+</div>
+
+@foreach (var group in Model.CategoryGroups)
+{
+    <section class="category-section" id="@group.Anchor">
+        <div class="section-heading">
+            <div class="section-heading__text">
+                <p class="eyebrow">Category</p>
+                <h2>@group.Name</h2>
+                <p class="muted">Top launches and alternatives inside @group.Name.</p>
+            </div>
+        </div>
+        <div class="grid">
+            @foreach (var app in group.AppsOrEmpty)
+            {
+                <partial name="_AppCard" model="app" />
+            }
+        </div>
+    </section>
+}

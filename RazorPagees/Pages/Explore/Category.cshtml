@@ -1,0 +1,28 @@
+@page "/Explore/{category}"
+@model RazorPagees.Pages.Explore.CategoryModel
+@{
+    ViewData["Title"] = $"{Model.CategoryName} launches";
+    ViewData["Description"] = $"Discover launches and alternatives in the {Model.CategoryName} category.";
+}
+
+@if (Model.Apps.Count == 0)
+{
+    <p class="muted">No launches found for this category yet.</p>
+}
+else
+{
+    <section class="section-heading">
+        <div class="section-heading__text">
+            <p class="eyebrow">Category</p>
+            <h2>@Model.CategoryName</h2>
+            <p class="muted">All launches and alternatives in this category.</p>
+        </div>
+    </section>
+
+    <div class="grid">
+        @foreach (var app in Model.Apps)
+        {
+            <partial name="_AppCard" model="app" />
+        }
+    </div>
+}
