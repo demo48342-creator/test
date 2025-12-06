@@ -1,6 +1,10 @@
 # Build results
 /bin/
 /obj/
+/RazorPagees/bin/
+/RazorPagees/obj/
+**/bin/
+**/obj/
 /out/
 /artifacts/
 
