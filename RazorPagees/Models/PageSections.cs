@@ -19,6 +19,8 @@ public class HeroModel
     public List<string> HotApps { get; set; } = new();
 
     public List<string> CategoryTags { get; set; } = new();
+
+    public SearchPalette SearchPalette { get; set; } = new();
 }
 
 public class StatBlock
@@ -56,4 +58,26 @@ public class ProductOption
     public string CtaText { get; set; } = string.Empty;
 
     public string CtaHref { get; set; } = "#";
+}
+
+public class SearchPalette
+{
+    public List<string> PopularTags { get; set; } = new();
+
+    public List<SearchCategory> CategorySets { get; set; } = new();
+
+    public List<AppListing> SpotlightResults { get; set; } = new();
+
+    public List<AppListing> SearchableApps { get; set; } = new();
+}
+
+public class SearchCategory
+{
+    public string Title { get; set; } = string.Empty;
+
+    public List<string> Items { get; set; } = new();
+
+    public string CtaText { get; set; } = "View all";
+
+    public string CtaHref { get; set; } = "/Explore";
 }

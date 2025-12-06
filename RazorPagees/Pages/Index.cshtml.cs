@@ -37,15 +37,62 @@ public class IndexModel : PageModel
         TopApps = _catalog.GetTopApps().ToList();
         NewLaunches = _catalog.GetNewLaunches().ToList();
 
+        var allApps = AllApps.ToList();
+        var sortedApps = allApps
+            .OrderByDescending(a => a.Score)
+            .ThenBy(a => a.Name)
+            .ToList();
+
         var hotApps = NewLaunches.Take(3)
             .Select(a => $"{a.Name} — {a.Upvotes} votes")
             .ToList();
 
-        var categories = AllApps
+        var categories = allApps
             .Select(a => a.Category)
             .Concat(new[] { "AI", "Services", "Productivity" })
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .OrderBy(c => c)
+            .ToList();
+
+        var popularTags = allApps
+            .SelectMany(a => a.Tags)
+            .GroupBy(t => t, StringComparer.OrdinalIgnoreCase)
+            .OrderByDescending(g => g.Count())
+            .ThenBy(g => g.Key)
+            .Take(7)
+            .Select(g => g.Key)
+            .ToList();
+
+        var bucketNames = new[] { "Productivity", "Engineering & Development", "Design & Creative" };
+
+        var bucketedCategories = categories
+            .Select((cat, index) => new { cat, index })
+            .GroupBy(x => x.index % bucketNames.Length)
+            .Select(g => g.Select(x => x.cat).ToList())
+            .ToList();
+
+        static string Anchorize(string text) => text.Replace(" ", "-").ToLowerInvariant();
+
+        var categorySets = new List<SearchCategory>();
+        for (var i = 0; i < bucketNames.Length; i++)
+        {
+            var items = bucketedCategories.ElementAtOrDefault(i) ?? new List<string>();
+            if (!items.Any())
+            {
+                items = categories.Take(3).ToList();
+            }
+
+            categorySets.Add(new SearchCategory
+            {
+                Title = bucketNames[i],
+                Items = items,
+                CtaText = "View all",
+                CtaHref = items.Any() ? $"/Explore#{Anchorize(items.First())}" : "/Explore"
+            });
+        }
+
+        var spotlight = sortedApps
+            .Take(4)
             .ToList();
 
         Hero = new HeroModel
@@ -57,6 +104,13 @@ public class IndexModel : PageModel
             PillBoard = new List<string> { "Dev tools", "AI & ML", "Productivity", "Design", "Community picks" },
             CategoryTags = categories,
             HotApps = hotApps,
+            SearchPalette = new SearchPalette
+            {
+                PopularTags = popularTags,
+                CategorySets = categorySets,
+                SpotlightResults = spotlight,
+                SearchableApps = sortedApps
+            },
             Stats = new List<StatBlock>
             {
                 new StatBlock { Value = TotalApps.ToString(), Label = "live launches", Note = "Ranked by community voting and engagement." },

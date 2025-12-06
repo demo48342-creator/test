@@ -17,15 +17,24 @@
                 }
             </div>
         </div>
-        <span class="pill pill--muted">@(!string.IsNullOrWhiteSpace(Model.Signal) ? Model.Signal : "Signal")</span>
+        <span class="pill pill--signal">@(!string.IsNullOrWhiteSpace(Model.Signal) ? Model.Signal : "Signal")</span>
     </div>
 
     @if (Model.IsNewLaunch)
     {
-        <div class="app-meta">
-            <span class="pill pill--outline">Launch @Model.LaunchDate.ToString("MMM dd")</span>
-            <span class="pill pill--muted">@Model.Upvotes votes</span>
-            <span class="pill pill--muted">Score @Model.Score</span>
+        <div class="app-card__stats">
+            <div class="app-card__stat">
+                <div class="app-card__stat-label">Launch</div>
+                <div class="app-card__stat-value">@Model.LaunchDate.ToString("MMM dd")</div>
+            </div>
+            <div class="app-card__stat">
+                <div class="app-card__stat-label">Score</div>
+                <div class="app-card__stat-value">@Model.Score</div>
+            </div>
+            <div class="app-card__stat">
+                <div class="app-card__stat-label">Votes</div>
+                <div class="app-card__stat-value">@Model.Upvotes</div>
+            </div>
         </div>
         <div class="vote-row vote-row--inline" aria-label="Voting for @Model.Name">
             <button type="button" class="vote-btn vote-btn--up" data-slug="@Model.Slug" data-direction="up" aria-label="Upvote @Model.Name">
@@ -46,10 +55,19 @@
     {
         <div class="app-summary">@Html.Raw(string.IsNullOrWhiteSpace(Model.HtmlDescription) ? Model.Summary : Model.HtmlDescription)</div>
 
-        <div class="app-meta">
-            <span class="pill pill--outline"><span class="score-value">@Model.Score</span> score</span>
-            <span class="pill pill--muted">@Model.Upvotes votes</span>
-            <span class="pill pill--muted">@Model.CommentsCount comments</span>
+        <div class="app-card__stats">
+            <div class="app-card__stat">
+                <div class="app-card__stat-label">Score</div>
+                <div class="app-card__stat-value score-value">@Model.Score</div>
+            </div>
+            <div class="app-card__stat">
+                <div class="app-card__stat-label">Votes</div>
+                <div class="app-card__stat-value">@Model.Upvotes</div>
+            </div>
+            <div class="app-card__stat">
+                <div class="app-card__stat-label">Comments</div>
+                <div class="app-card__stat-value">@Model.CommentsCount</div>
+            </div>
         </div>
 
         <div class="alt-list">
@@ -67,7 +85,7 @@
                     </div>
                     <div class="alt-meta">
                         <span class="pill pill--price">@alt.Pricing</span>
-                        <a class="alt-link" href="@alt.Link" target="_blank" rel="noreferrer">Open</a>
+                        <a class="pill pill--ghost alt-link" href="@alt.Link" target="_blank" rel="noreferrer">Visit page</a>
                     </div>
                 </div>
             }

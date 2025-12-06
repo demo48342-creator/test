@@ -1,14 +1,18 @@
 @model RazorPagees.Models.HeroModel
 
+@{
+    var palette = Model.SearchPalette ?? new RazorPagees.Models.SearchPalette();
+}
+
 <section class="hero">
     <div class="hero__text">
         <p class="eyebrow">@Model.Eyebrow</p>
         <h1>@Model.Title</h1>
         <p class="lede">@Model.Lede</p>
         <div class="hero__actions">
-            <form class="search" method="get">
-                <input name="query" type="search" placeholder="Search by app, problem, or category" />
-                <button type="submit">Start exploring</button>
+            <form class="search" method="get" data-search-form>
+                <input name="query" type="search" placeholder="Search by app, problem, or category" autocomplete="off" data-open-search />
+                <button type="submit" data-open-search>Start exploring</button>
             </form>
             <div class="quick-filters">
                 @foreach (var chip in Model.QuickFilters)
@@ -62,4 +66,88 @@
             <p class="stat-note">@stat.Note</p>
         </div>
     }
+</div>
+
+<div class="search-overlay" id="searchOverlay" aria-hidden="true">
+    <div class="search-dialog" role="dialog" aria-modal="true" aria-labelledby="searchOverlayTitle">
+        <div class="search-dialog__header">
+            <div class="search-dialog__input">
+                <span class="search-dialog__icon" aria-hidden="true">⌕</span>
+                <input id="searchOverlayInput" type="search" placeholder="Search for products, launches, or people..." autocomplete="off" />
+            </div>
+            <button type="button" class="icon-btn search-dialog__close" data-close-search aria-label="Close search">×</button>
+        </div>
+        <div class="search-dialog__body">
+            <div class="search-dialog__column search-dialog__column--left">
+                <p class="eyebrow" id="searchOverlayTitle">Popular launch tags</p>
+                <div class="chip-row">
+                    @foreach (var tag in palette.PopularTags)
+                    {
+                        <span class="chip chip--link search-chip" data-searchable="@tag">@tag</span>
+                    }
+                </div>
+                <a class="search-dialog__link" href="/Explore">View all launch tags</a>
+                <div class="search-divider"></div>
+                <div class="search-spotlight">
+                    <p class="eyebrow">Spotlight results</p>
+                    <div class="search-results">
+                        @foreach (var app in palette.SpotlightResults)
+                        {
+                            <a class="search-result" href="/apps/@app.Slug" data-searchable="@($"{app.Name} {app.Category} {string.Join(' ', app.Tags)} {app.Fit} {app.Summary}")">
+                                <div class="search-result__logo">
+                                    <img src="@app.LogoUrl" alt="@app.Name logo" loading="lazy" />
+                                </div>
+                                <div class="search-result__body">
+                                    <div class="search-result__title">@app.Name</div>
+                                    <div class="search-result__meta">@app.Category · @app.Signal</div>
+                                </div>
+                                <span class="pill pill--muted">@($"{app.Upvotes} votes")</span>
+                            </a>
+                        }
+                    </div>
+                    <div class="search-divider"></div>
+                    <p class="eyebrow">All products</p>
+                    <div class="search-results">
+                        @foreach (var app in palette.SearchableApps)
+                        {
+                            <a class="search-result" href="/apps/@app.Slug" data-searchable="@($"{app.Name} {app.Category} {string.Join(' ', app.Tags)} {app.Fit} {app.Summary}")">
+                                <div class="search-result__logo">
+                                    <img src="@app.LogoUrl" alt="@app.Name logo" loading="lazy" />
+                                </div>
+                                <div class="search-result__body">
+                                    <div class="search-result__title">@app.Name</div>
+                                    <div class="search-result__meta">@app.Category · @app.Signal</div>
+                                </div>
+                                <span class="pill pill--muted">@($"{app.Upvotes} votes")</span>
+                            </a>
+                        }
+                    </div>
+                    <div class="search-empty" aria-live="polite">No matches yet — try another term.</div>
+                </div>
+            </div>
+            <div class="search-dialog__column">
+                <div class="search-dialog__column-header">
+                    <p class="eyebrow">Product categories</p>
+                    <a class="text-link" href="/Explore">View all product categories</a>
+                </div>
+                <div class="search-category-grid">
+                    @foreach (var set in palette.CategorySets)
+                    {
+                        <div class="search-category-card">
+                            <div class="search-category-card__header">
+                                <div class="search-category-card__title">@set.Title</div>
+                                <a class="text-link" href="@set.CtaHref">@set.CtaText</a>
+                            </div>
+                            <ul class="search-category-list">
+                                @foreach (var item in set.Items)
+                                {
+                                    <li class="search-category__item" data-searchable="@item">@item</li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
