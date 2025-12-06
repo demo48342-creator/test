@@ -5,21 +5,51 @@
     ViewData["Description"] = $"Discover launches and alternatives in the {Model.CategoryName} category.";
 }
 
+<section class="category-hero">
+    <div class="category-hero__meta-row">
+        <span class="pill pill--ghost">@Model.CanonicalPath</span>
+        <span class="pill pill--muted">Curated list · Vote & comment</span>
+    </div>
+    <h1>@Model.CategoryName</h1>
+    <p class="muted">Best-in-class tools for this need, with pros, notes, and community voting.</p>
+    <div class="category-hero__stats">
+        <div class="mini-stat">
+            <div class="mini-stat__label">Apps</div>
+            <div class="mini-stat__value">@Model.TotalCount</div>
+        </div>
+        <div class="mini-stat">
+            <div class="mini-stat__label">Total votes</div>
+            <div class="mini-stat__value">@Model.TotalVotes</div>
+        </div>
+        <div class="mini-stat">
+            <div class="mini-stat__label">Route</div>
+            <div class="mini-stat__value">/explore/@Model.CategorySlug</div>
+        </div>
+    </div>
+    <div class="category-hero__actions">
+        <a class="pill pill--outline" href="/Explore">Browse all categories</a>
+        <a class="pill pill--ghost" href="#apps">Jump to apps</a>
+        <a class="pill pill--outline" href="#">Submit an app</a>
+    </div>
+</section>
+
+<div class="category-nav">
+    <div class="category-nav__label">Jump to another category</div>
+    <div class="category-nav__chips">
+        @foreach (var cat in Model.AllCategories.Take(10))
+        {
+            <a class="chip chip--link" href="/Explore/@cat.Anchor">@cat.Name (@cat.Count)</a>
+        }
+    </div>
+</div>
+
 @if (Model.Apps.Count == 0)
 {
     <p class="muted">No launches found for this category yet.</p>
 }
 else
 {
-    <section class="section-heading">
-        <div class="section-heading__text">
-            <p class="eyebrow">Category</p>
-            <h2>@Model.CategoryName</h2>
-            <p class="muted">All launches and alternatives in this category.</p>
-        </div>
-    </section>
-
-    <div class="grid">
+    <div class="grid" id="apps">
         @foreach (var app in Model.Apps)
         {
             <partial name="_AppCard" model="app" />

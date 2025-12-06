@@ -37,6 +37,12 @@ public class AppListing
 
     public int Score { get; set; }
 
+    public double? TrustpilotScore { get; set; }
+
+    public int? TrustpilotReviews { get; set; }
+
+    public string? TrustpilotUrl { get; set; }
+
     public bool IsNewLaunch { get; set; }
 
     public int Upvotes { get; set; }

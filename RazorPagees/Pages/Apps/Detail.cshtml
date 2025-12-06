@@ -52,6 +52,19 @@ else
                     <span class="pill pill--outline">Golden Kitty eligible</span>
                 }
             </div>
+            @if (Model.App.TrustpilotScore.HasValue && Model.App.TrustpilotReviews.HasValue && !string.IsNullOrWhiteSpace(Model.App.TrustpilotUrl))
+            {
+                <div class="trust-card">
+                    <div class="trust-card__left">
+                        <div class="trust-card__title">Trustpilot</div>
+                        <div class="trust-card__rating">★ @Model.App.TrustpilotScore.Value.ToString("0.0")</div>
+                        <div class="trust-card__meta">@Model.App.TrustpilotReviews.Value.ToString("N0") reviews</div>
+                    </div>
+                    <div class="trust-card__cta">
+                        <a class="pill pill--trust" href="@Model.App.TrustpilotUrl" target="_blank" rel="noopener">View on Trustpilot</a>
+                    </div>
+                </div>
+            }
             <div class="app-summary">@Html.Raw(string.IsNullOrWhiteSpace(Model.App.HtmlDescription) ? Model.App.Summary : Model.App.HtmlDescription)</div>
             @if (!string.IsNullOrWhiteSpace(Model.App.DiscussionLink))
             {
@@ -72,7 +85,7 @@ else
                         </div>
                         <div class="alt-meta">
                             <span class="pill pill--price">@alt.Pricing</span>
-                            <a class="alt-link" href="@alt.Link" target="_blank" rel="noreferrer">Open</a>
+                            <a class="pill pill--ghost alt-link" href="@alt.Link" target="_blank" rel="noreferrer">Visit page</a>
                         </div>
                     </div>
                 }

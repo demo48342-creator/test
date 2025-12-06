@@ -96,6 +96,9 @@ public class AppCatalogService
                 Upvotes = 1840,
                 Downvotes = 63,
                 CommentsCount = 412,
+                TrustpilotScore = 4.5,
+                TrustpilotReviews = 12850,
+                TrustpilotUrl = "https://www.trustpilot.com/review/adobe.com",
                 LaunchDate = DateTime.UtcNow.AddDays(-16),
                 GoldenKittyEligible = true,
                 DiscussionLink = "#",
@@ -143,6 +146,9 @@ public class AppCatalogService
                 Upvotes = 1620,
                 Downvotes = 120,
                 CommentsCount = 365,
+                TrustpilotScore = 4.4,
+                TrustpilotReviews = 9400,
+                TrustpilotUrl = "https://www.trustpilot.com/review/slack.com",
                 LaunchDate = DateTime.UtcNow.AddDays(-5),
                 GoldenKittyEligible = true,
                 DiscussionLink = "#",
@@ -190,6 +196,9 @@ public class AppCatalogService
                 Upvotes = 1510,
                 Downvotes = 45,
                 CommentsCount = 298,
+                TrustpilotScore = 4.7,
+                TrustpilotReviews = 2100,
+                TrustpilotUrl = "https://www.trustpilot.com/review/notion.so",
                 LaunchDate = DateTime.UtcNow.AddDays(-22),
                 GoldenKittyEligible = true,
                 DiscussionLink = "#",
@@ -237,6 +246,9 @@ public class AppCatalogService
                 Upvotes = 1760,
                 Downvotes = 51,
                 CommentsCount = 502,
+                TrustpilotScore = 4.6,
+                TrustpilotReviews = 3100,
+                TrustpilotUrl = "https://www.trustpilot.com/review/figma.com",
                 LaunchDate = DateTime.UtcNow.AddDays(-9),
                 GoldenKittyEligible = true,
                 DiscussionLink = "#",
@@ -285,6 +297,9 @@ public class AppCatalogService
                 Upvotes = 1320,
                 Downvotes = 62,
                 CommentsCount = 180,
+                TrustpilotScore = 4.4,
+                TrustpilotReviews = 4300,
+                TrustpilotUrl = "https://www.trustpilot.com/review/zapier.com",
                 LaunchDate = DateTime.UtcNow.AddDays(-30),
                 GoldenKittyEligible = true,
                 DiscussionLink = "#",
@@ -316,6 +331,107 @@ public class AppCatalogService
                     }
                 }
             }
+        ,
+            new AppListing
+            {
+                Id = 106,
+                Slug = "resume-craft",
+                Name = "ResumeCraft",
+                Category = "Resume Builders",
+                Summary = "AI-assisted resume builder with tailored bullet rewrites and ATS scoring.",
+                Fit = "Job seekers who want fast drafts with recruiter-ready formatting.",
+                Tags = new List<string> { "AI", "ATS friendly", "Templates" },
+                Signal = "Top pick",
+                LogoUrl = "https://logo.clearbit.com/flowcv.com",
+                Website = "https://www.resumecraft.fake",
+                HtmlDescription = "<p>Generate, polish, and score resumes against job descriptions. Built-in templates keep things ATS-friendly.</p>",
+                Upvotes = 980,
+                Downvotes = 24,
+                CommentsCount = 210,
+                TrustpilotScore = 4.3,
+                TrustpilotReviews = 860,
+                TrustpilotUrl = "https://www.trustpilot.com/review/resumecraft.fake",
+                LaunchDate = DateTime.UtcNow.AddDays(-7),
+                GoldenKittyEligible = true,
+                DiscussionLink = "#",
+                Alternatives = new List<AlternativeOption>
+                {
+                    new AlternativeOption
+                    {
+                        Name = "Rezi",
+                        Differentiator = "ATS keyword scans with targeted rewrites.",
+                        Pricing = "Free + Pro",
+                        Link = "https://www.rezi.ai",
+                        LogoUrl = "https://logo.clearbit.com/rezi.ai"
+                    },
+                    new AlternativeOption
+                    {
+                        Name = "Teal",
+                        Differentiator = "Career tracker plus resume tailoring per role.",
+                        Pricing = "Free + Pro",
+                        Link = "https://www.tealhq.com",
+                        LogoUrl = "https://logo.clearbit.com/tealhq.com"
+                    },
+                    new AlternativeOption
+                    {
+                        Name = "Standard Resume",
+                        Differentiator = "Clean, minimal templates exportable to PDF and web.",
+                        Pricing = "Free + paid",
+                        Link = "https://www.standardresume.co",
+                        LogoUrl = "https://logo.clearbit.com/standardresume.co"
+                    }
+                }
+            },
+            new AppListing
+            {
+                Id = 107,
+                Slug = "vibe-code",
+                Name = "VibeCode",
+                Category = "Vibe Coding",
+                Summary = "Collaborative cloud IDE with live avatars, music rooms, and AI pairing.",
+                Fit = "Teams pairing remotely who want fun sessions with instant share links.",
+                Tags = new List<string> { "Cloud IDE", "Live share", "AI pair" },
+                Signal = "Top pick",
+                LogoUrl = "https://logo.clearbit.com/replit.com",
+                Website = "https://www.vibecode.fake",
+                HtmlDescription = "<p>Spin up sessions with live cursors, room vibes, and an AI pair coder. Great for onboarding and hack sessions.</p>",
+                Upvotes = 860,
+                Downvotes = 31,
+                CommentsCount = 164,
+                TrustpilotScore = 4.2,
+                TrustpilotReviews = 420,
+                TrustpilotUrl = "https://www.trustpilot.com/review/vibecode.fake",
+                LaunchDate = DateTime.UtcNow.AddDays(-3),
+                GoldenKittyEligible = true,
+                DiscussionLink = "#",
+                Alternatives = new List<AlternativeOption>
+                {
+                    new AlternativeOption
+                    {
+                        Name = "Replit",
+                        Differentiator = "Instant repls with multiplayer coding and deployments.",
+                        Pricing = "Free + Hacker",
+                        Link = "https://replit.com",
+                        LogoUrl = "https://logo.clearbit.com/replit.com"
+                    },
+                    new AlternativeOption
+                    {
+                        Name = "Glitch",
+                        Differentiator = "Remixable projects with quick share links.",
+                        Pricing = "Free + Pro",
+                        Link = "https://glitch.com",
+                        LogoUrl = "https://logo.clearbit.com/glitch.com"
+                    },
+                    new AlternativeOption
+                    {
+                        Name = "CodePen",
+                        Differentiator = "Front-end playground with community showcases.",
+                        Pricing = "Free + Pro",
+                        Link = "https://codepen.io",
+                        LogoUrl = "https://logo.clearbit.com/codepen.io"
+                    }
+                }
+            }
         };
 
         var launches = new List<AppListing>
@@ -337,6 +453,9 @@ public class AppCatalogService
                 Upvotes = 1240,
                 Downvotes = 42,
                 CommentsCount = 410,
+                TrustpilotScore = 4.4,
+                TrustpilotReviews = 1800,
+                TrustpilotUrl = "https://www.trustpilot.com/review/arc.net",
                 LaunchDate = DateTime.UtcNow.AddDays(-1),
                 GoldenKittyEligible = true,
                 DiscussionLink = "#",
@@ -385,6 +504,9 @@ public class AppCatalogService
                 Upvotes = 860,
                 Downvotes = 22,
                 CommentsCount = 180,
+                TrustpilotScore = 4.6,
+                TrustpilotReviews = 2300,
+                TrustpilotUrl = "https://www.trustpilot.com/review/perplexity.ai",
                 LaunchDate = DateTime.UtcNow.AddDays(-1),
                 GoldenKittyEligible = true,
                 DiscussionLink = "#",
@@ -433,6 +555,9 @@ public class AppCatalogService
                 Upvotes = 980,
                 Downvotes = 28,
                 CommentsCount = 210,
+                TrustpilotScore = 4.5,
+                TrustpilotReviews = 1750,
+                TrustpilotUrl = "https://www.trustpilot.com/review/linear.app",
                 LaunchDate = DateTime.UtcNow.AddDays(-2),
                 GoldenKittyEligible = true,
                 DiscussionLink = "#",

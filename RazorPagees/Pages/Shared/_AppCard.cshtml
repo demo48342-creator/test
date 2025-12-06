@@ -36,6 +36,26 @@
                 <div class="app-card__stat-value">@Model.Upvotes</div>
             </div>
         </div>
+        @if (Model.TrustpilotScore.HasValue && Model.TrustpilotReviews.HasValue && !string.IsNullOrWhiteSpace(Model.TrustpilotUrl))
+        {
+            <div class="trust-row">
+                <a class="pill pill--trust" href="@Model.TrustpilotUrl" target="_blank" rel="noopener">
+                    ★ @Model.TrustpilotScore.Value.ToString("0.0") · @Model.TrustpilotReviews.Value.ToString("N0") reviews
+                </a>
+                <span class="muted">Source: Trustpilot</span>
+            </div>
+        }
+        <div class="app-pros-cons">
+            <div class="app-pros-cons__item">
+                <div class="app-pros-cons__label">Pros</div>
+                <div class="app-pros-cons__body">@Model.Fit</div>
+            </div>
+            <div class="app-pros-cons__item">
+                <div class="app-pros-cons__label">Notes</div>
+                <div class="app-pros-cons__body">@Model.Summary</div>
+            </div>
+        </div>
+
         <div class="vote-row vote-row--inline" aria-label="Voting for @Model.Name">
             <button type="button" class="vote-btn vote-btn--up" data-slug="@Model.Slug" data-direction="up" aria-label="Upvote @Model.Name">
                 <span>▲</span>
@@ -67,6 +87,26 @@
             <div class="app-card__stat">
                 <div class="app-card__stat-label">Comments</div>
                 <div class="app-card__stat-value">@Model.CommentsCount</div>
+            </div>
+        </div>
+        @if (Model.TrustpilotScore.HasValue && Model.TrustpilotReviews.HasValue && !string.IsNullOrWhiteSpace(Model.TrustpilotUrl))
+        {
+            <div class="trust-row">
+                <a class="pill pill--trust" href="@Model.TrustpilotUrl" target="_blank" rel="noopener">
+                    ★ @Model.TrustpilotScore.Value.ToString("0.0") · @Model.TrustpilotReviews.Value.ToString("N0") reviews
+                </a>
+                <span class="muted">Source: Trustpilot</span>
+            </div>
+        }
+
+        <div class="app-pros-cons">
+            <div class="app-pros-cons__item">
+                <div class="app-pros-cons__label">Pros</div>
+                <div class="app-pros-cons__body">@Model.Fit</div>
+            </div>
+            <div class="app-pros-cons__item">
+                <div class="app-pros-cons__label">Notes</div>
+                <div class="app-pros-cons__body">@Model.Summary</div>
             </div>
         </div>
 
