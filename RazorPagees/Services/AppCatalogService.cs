@@ -34,6 +34,21 @@ public class AppCatalogService
 
     private static string Slugify(string text) => text.Replace(" ", "-").ToLowerInvariant();
 
+    public int? RegisterView(string slug)
+    {
+        lock (_lock)
+        {
+            var app = GetBySlug(slug);
+            if (app is null)
+            {
+                return null;
+            }
+
+            app.Views += 1;
+            return app.Views;
+        }
+    }
+
     public (int Up, int Down, int Score)? Vote(string slug, string direction)
     {
         lock (_lock)
@@ -68,8 +83,7 @@ public class AppCatalogService
         {
             // Simple leaderboard score: heavier weight on upvotes, some on comments, freshness bump for new launches.
             var freshness = app.IsNewLaunch ? 25 : 10;
-            var kitty = app.GoldenKittyEligible ? 5 : 0;
-            app.Score = (app.Upvotes * 3) + (app.CommentsCount * 2) + freshness + kitty;
+            app.Score = (app.Upvotes * 3) + (app.CommentsCount * 2) + freshness;
         }
 
         _newLaunches.Sort((a, b) => b.Score.CompareTo(a.Score));
@@ -100,7 +114,6 @@ public class AppCatalogService
                 TrustpilotReviews = 12850,
                 TrustpilotUrl = "https://www.trustpilot.com/review/adobe.com",
                 LaunchDate = DateTime.UtcNow.AddDays(-16),
-                GoldenKittyEligible = true,
                 DiscussionLink = "#",
                 Alternatives = new List<AlternativeOption>
                 {
@@ -150,7 +163,6 @@ public class AppCatalogService
                 TrustpilotReviews = 9400,
                 TrustpilotUrl = "https://www.trustpilot.com/review/slack.com",
                 LaunchDate = DateTime.UtcNow.AddDays(-5),
-                GoldenKittyEligible = true,
                 DiscussionLink = "#",
                 Alternatives = new List<AlternativeOption>
                 {
@@ -200,7 +212,6 @@ public class AppCatalogService
                 TrustpilotReviews = 2100,
                 TrustpilotUrl = "https://www.trustpilot.com/review/notion.so",
                 LaunchDate = DateTime.UtcNow.AddDays(-22),
-                GoldenKittyEligible = true,
                 DiscussionLink = "#",
                 Alternatives = new List<AlternativeOption>
                 {
@@ -250,7 +261,6 @@ public class AppCatalogService
                 TrustpilotReviews = 3100,
                 TrustpilotUrl = "https://www.trustpilot.com/review/figma.com",
                 LaunchDate = DateTime.UtcNow.AddDays(-9),
-                GoldenKittyEligible = true,
                 DiscussionLink = "#",
                 Alternatives = new List<AlternativeOption>
                 {
@@ -301,7 +311,6 @@ public class AppCatalogService
                 TrustpilotReviews = 4300,
                 TrustpilotUrl = "https://www.trustpilot.com/review/zapier.com",
                 LaunchDate = DateTime.UtcNow.AddDays(-30),
-                GoldenKittyEligible = true,
                 DiscussionLink = "#",
                 Alternatives = new List<AlternativeOption>
                 {
@@ -352,7 +361,6 @@ public class AppCatalogService
                 TrustpilotReviews = 860,
                 TrustpilotUrl = "https://www.trustpilot.com/review/resumecraft.fake",
                 LaunchDate = DateTime.UtcNow.AddDays(-7),
-                GoldenKittyEligible = true,
                 DiscussionLink = "#",
                 Alternatives = new List<AlternativeOption>
                 {
@@ -402,7 +410,6 @@ public class AppCatalogService
                 TrustpilotReviews = 420,
                 TrustpilotUrl = "https://www.trustpilot.com/review/vibecode.fake",
                 LaunchDate = DateTime.UtcNow.AddDays(-3),
-                GoldenKittyEligible = true,
                 DiscussionLink = "#",
                 Alternatives = new List<AlternativeOption>
                 {
@@ -457,7 +464,6 @@ public class AppCatalogService
                 TrustpilotReviews = 1800,
                 TrustpilotUrl = "https://www.trustpilot.com/review/arc.net",
                 LaunchDate = DateTime.UtcNow.AddDays(-1),
-                GoldenKittyEligible = true,
                 DiscussionLink = "#",
                 Alternatives = new List<AlternativeOption>
                 {
@@ -508,7 +514,6 @@ public class AppCatalogService
                 TrustpilotReviews = 2300,
                 TrustpilotUrl = "https://www.trustpilot.com/review/perplexity.ai",
                 LaunchDate = DateTime.UtcNow.AddDays(-1),
-                GoldenKittyEligible = true,
                 DiscussionLink = "#",
                 Alternatives = new List<AlternativeOption>
                 {
@@ -559,7 +564,6 @@ public class AppCatalogService
                 TrustpilotReviews = 1750,
                 TrustpilotUrl = "https://www.trustpilot.com/review/linear.app",
                 LaunchDate = DateTime.UtcNow.AddDays(-2),
-                GoldenKittyEligible = true,
                 DiscussionLink = "#",
                 Alternatives = new List<AlternativeOption>
                 {

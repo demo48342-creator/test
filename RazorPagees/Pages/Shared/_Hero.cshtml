@@ -25,7 +25,7 @@
             <nav class="category-tags" aria-label="Popular categories">
                 @foreach (var cat in Model.CategoryTags)
                 {
-                    <a class="chip chip--link" href="/Explore#@(cat.Replace(" ", "-").ToLower())">@cat</a>
+                    <a class="chip chip--link" href="/Explore/@(cat.Replace(" ", "-").ToLower())">@cat</a>
                 }
             </nav>
         </div>
@@ -34,7 +34,7 @@
         <div class="panel-header">
             <p class="eyebrow">Hot apps</p>
             <h3>Racing up today</h3>
-            <a class="text-link" href="#launches">See launches</a>
+            <a class="text-link" href="/Explore">See launches</a>
         </div>
         <div class="hot-list">
             @for (var i = 0; i < Model.HotApps.Count; i++)

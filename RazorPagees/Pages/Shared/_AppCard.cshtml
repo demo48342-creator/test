@@ -37,6 +37,10 @@
                 <div class="app-card__stat-label">Votes</div>
                 <div class="app-card__stat-value">@Model.Upvotes</div>
             </div>
+            <div class="app-card__stat">
+                <div class="app-card__stat-label">Views</div>
+                <div class="app-card__stat-value">@Model.Views</div>
+            </div>
         </div>
         @if (Model.TrustpilotScore.HasValue && Model.TrustpilotReviews.HasValue && !string.IsNullOrWhiteSpace(Model.TrustpilotUrl))
         {
@@ -85,6 +89,10 @@
             <div class="app-card__stat">
                 <div class="app-card__stat-label">Votes</div>
                 <div class="app-card__stat-value">@Model.Upvotes</div>
+            </div>
+            <div class="app-card__stat">
+                <div class="app-card__stat-label">Views</div>
+                <div class="app-card__stat-value">@Model.Views</div>
             </div>
             <div class="app-card__stat">
                 <div class="app-card__stat-label">Comments</div>

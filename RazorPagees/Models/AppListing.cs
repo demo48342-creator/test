@@ -31,8 +31,6 @@ public class AppListing
 
     public int CommentsCount { get; set; }
 
-    public bool GoldenKittyEligible { get; set; }
-
     public string? DiscussionLink { get; set; }
 
     public int Score { get; set; }
@@ -42,6 +40,8 @@ public class AppListing
     public int? TrustpilotReviews { get; set; }
 
     public string? TrustpilotUrl { get; set; }
+
+    public int Views { get; set; }
 
     public bool IsNewLaunch { get; set; }
 

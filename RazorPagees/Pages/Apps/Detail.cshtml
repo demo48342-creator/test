@@ -45,12 +45,9 @@ else
             <div class="app-metrics">
                 <span class="pill pill--outline"><span class="score-value">@Model.App.Score</span> score</span>
                 <span class="pill pill--muted">@Model.App.Upvotes votes</span>
+                <span class="pill pill--muted">@Model.App.Views views</span>
                 <span class="pill pill--muted">@Model.App.CommentsCount comments</span>
                 <span class="pill pill--muted">@Model.App.LaunchDate.ToString("MMM dd, yyyy") launch</span>
-                @if (Model.App.GoldenKittyEligible)
-                {
-                    <span class="pill pill--outline">Golden Kitty eligible</span>
-                }
             </div>
             @if (Model.App.TrustpilotScore.HasValue && Model.App.TrustpilotReviews.HasValue && !string.IsNullOrWhiteSpace(Model.App.TrustpilotUrl))
             {
